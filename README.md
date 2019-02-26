@@ -20,4 +20,14 @@ https://github.com/Wihogora/Pitch
 
 * A user should submit a pitch in any category.
 
+## Technologies used
+* Python
+
+
+## Support and contact details
+If u have any question u can contact me on:
+
+* Tel:+250788716357
+* Email:wwihogora@gmail.com
+
 
