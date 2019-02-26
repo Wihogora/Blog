@@ -6,8 +6,8 @@ class Config:
     MOVIE_API_KEY = os.environ.get('MOVIE_API_KEY')
     SECRET_KEY = os.environ.get('SECRET_KEY')
     
-
-
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://ww:wihogora@localhost/pitch'
+    UPLOADED_PHOTOS_DEST ='app/static/photos'
 class ProdConfig(Config):
     pass
 
