@@ -17,6 +17,26 @@
         {{ super() }}
         <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
         {% endblock %}
+
+        <!-- Content block -->
+        {%block content%}
+        <div class="jumbotron text-center" style="background-color: rgb(158, 120, 130); color: #fff; padding: 55px 25px; font-family: Times New Roman, Times, serif;">
+            <h1> Pitches </h1>
+        </div>
+        
+        <div class="container" style= "font-family: Times New Roman, Times, serif">
+            <div class="row">
+                
+                <div class="col-md-4">
+                    <div class="well well-lg">
+                        <h3>Product Pitches</h3>
+                        <p>If you want to talk about your products, We are here for you.</p>
+                        <a href="{{url_for('main.product_pitches')}}" class="btn btn-primary -center">View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {%endblock%}
         
     </head>
   

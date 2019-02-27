@@ -1,6 +1,6 @@
-<div class="navbar navbar-inverse" role="navigation">
+<div class="navbar navbar-inverse" role="navigation"style="background-color:bisque;">
     <div class="container-fluid">
-        <div class="navbar-header">
+        <div class="navbar-header" >
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
@@ -12,7 +12,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 {% if current_user.is_authenticated %}
-                <li style="color:white;padding:15px;">{{current_user.username}}</li>
+                <li style="color:rgb(2, 41, 92);padding:15px;">{{current_user.username}}</li>
                 <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
                 {% else %}
                 <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
