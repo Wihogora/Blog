@@ -23,12 +23,10 @@ def create_app(config_name):
     bootstrap.init_app(app)
     db.init_app(app)
     login_manager.init_app(app)
+    
     # Registering the blueprint
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
-
-    # setting config
-    # from .request import configure_request
 
     # configure_request(app)
     from .auth import auth as auth_blueprint
@@ -45,19 +43,5 @@ from .main import error
 
 
 
-
-
-
-
-
-
-
-
-# def create_app(config_name):
- 
-#     #Initializing Flask Extensions
-#     bootstrap.init_app(app)
-#     db.init_app(app)
-#     login_manager.init_app(app)
 
 
