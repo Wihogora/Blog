@@ -22,6 +22,9 @@ https://github.com/Wihogora/Pitch
 
 ## Technologies used
 * Python
+* Pip
+* Flask
+* Postgres
 
 
 ## Support and contact details
