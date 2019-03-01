@@ -31,22 +31,30 @@ def index():
 
 @main.route('/post/new', methods=['GET', 'POST'])
 @login_required
-def update_profile(uname):
-    user = User.query.filter_by(username = uname).first()
-    if user is None:
-        abort(404)
+def new_post():
+    post_form = PostForm()
+    if post_form.validate_on_submit():
+        title = post_form.title.data
+        text = post_form.text.data
 
-    form = UpdateProfile()
+        users = User.query.all()
 
-    if form.validate_on_submit():
-        user.bio = form.bio.data
+        # Update post instance
+        new_post = Post(title=title, text=text, post=current_user)
 
-        db.session.add(user)
-        db.session.commit()
+        # Save post method
+        new_post.save_post()
 
-        return redirect(url_for('.profile',uname=user.username))
+        for user in users:
+            if user.subscription:
+                mail_message("New Post", "email/new_post", user.email, user=user)
 
-    return render_template('profile/update.html',form =form)
+        return redirect(url_for('.index'))
+
+
+
+
+
 
 
 @main.route('/user/<uname>/update/pic',methods= ['POST'])
