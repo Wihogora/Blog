@@ -13,6 +13,15 @@
         {% block navbar %}
             {% include 'navbar.html' %}
         {% endblock %}
+
+        {%block styles %}
+        {{super()}}
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Ranga" rel="stylesheet">
+        <!--Importing the simple mde css and js files  -->
+        {{ simplemde.css}}
+        {{ simplemde.js }}
+
+{% endblock %}
     </head>
     <body>
         <!-- Content block -->
