@@ -95,6 +95,25 @@ class Role(db.Model):
     def __repr__(self):
         return f'User {self.name}'
 
+class Post(db.Model):
+    __tablename__ = 'posts'
+
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String())
+    text = db.Column(db.String())
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
+
+    comments = db.relationship('Comment', backref='post_id', lazy='dynamic')
+
+    def save_post(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def get_post(id):
+        post = Post.query.filter_by(id=id).first()
+        return post
+        
 
 
 
