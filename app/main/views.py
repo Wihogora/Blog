@@ -1,10 +1,11 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from .forms import UpdateProfile,PitchForm,CommentForm
+from .forms import PostForm, CommentForm
 from .. import db,photos
-from ..models import User,Pitch,Comment
+from ..models import User, Post, Comment
 from flask_login import login_required,current_user
 import datetime
+from ..email import mail_message
 
 @main.route('/')
 def index():
@@ -12,28 +13,23 @@ def index():
     View root page function that returns the index page and its data
     '''
 
-    title = 'Home - Welcome to my Pitch Website'
+    title = 'Home - Welcome to my favorite Blog!!'
 
-    # Getting reviews by category
-    # interview_piches = Pitch.get_pitches('interview')
-    product_piches = Pitch.get_pitches('product')
-    promotion_pitches = Pitch.get_pitches('promotion')
+   return render_template('index.html', title=title, posts=posts)
 
 
-    return render_template('index.html',title = title, product = product_piches, promotion = promotion_pitches)
+
+# @main.route('/user/<uname>')
+# def profile(uname):
+#     user = User.query.filter_by(username = uname).first()
+#     pitches_count = Pitch.count_pitches(uname)
+#     if user is None:
+#         abort(404)
+
+#     return render_template("profile/profile.html", user = user,pitches = pitches_count)
 
 
-@main.route('/user/<uname>')
-def profile(uname):
-    user = User.query.filter_by(username = uname).first()
-    pitches_count = Pitch.count_pitches(uname)
-    if user is None:
-        abort(404)
-
-    return render_template("profile/profile.html", user = user,pitches = pitches_count)
-
-
-@main.route('/user/<uname>/update',methods = ['GET','POST'])
+@main.route('/post/new', methods=['GET', 'POST'])
 @login_required
 def update_profile(uname):
     user = User.query.filter_by(username = uname).first()
