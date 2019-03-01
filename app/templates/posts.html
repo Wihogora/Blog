@@ -1,15 +1,10 @@
 {% extends 'base.html' %}
-{% import 'macros.html' as macro %}
-
+{% import 'macros.html' as macro%}
+<!-- Content block -->
 {%block content%}
-<link href="https://fonts.googleapis.com/css?family=Indie+Flower|Ranga" rel="stylesheet">
-<div class="jumbotron text-center" style="background-color: rgb(161, 114, 126); color: #fff; padding: 100px 25px; font-family: Times New Roman, Times, serif;">
-    <h1>Product Pitches</h1>
-</div>
-<div class="container" style="font-family: Times New Roman, Times, serif;">
+<div class="container">
+    <h1>All posts</h1>
     <hr>
-    <div class="row">
-        {{macro.displayPitches(pitches)}}
-    </div>
+    {{macro.displayPosts(posts)}}
 </div>
 {%endblock%}
