@@ -24,7 +24,12 @@
                 <img src="static/photos/wiwi.jpg" style="height:200px; width:200px;">
         </div>
         
-      
+        <div class="row" style="margin-bottom:80px;">
+        <h2>Quote</h2>
+        <p>{{quotes.quote}}</p>
+        By <h3>{{quotes.author}}</h3>
+
+        </div>
         <!-- <div class="container" style="padding-bottom: 20px;"> -->
         <!-- <a href="{{url_for('main.all_posts')}}" class="btn btn-success"> posts</a> -->
         <!-- </div> -->
@@ -37,7 +42,7 @@
                 <h1>Recent posts</h1>
                 <hr>
                 {{macro.displayPosts(posts)}}
-                <a href="{{url_for('main.subscribe,id = user.id')}}" class="btn btn-success", style="margin-top:110px;">Subscribe</a>
+                <a href="{{url_for('main.subscribe')}}" class="btn btn-success", style="margin-top:110px;">Subscribe</a>
         </div>
         {%endblock%}
     </body>

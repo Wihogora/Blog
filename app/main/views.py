@@ -2,11 +2,11 @@ from flask import render_template, request, redirect, url_for, abort
 from . import main
 from ..models import User, Post, Comment
 from .. import db
-from .forms import PostForm, CommentForm
+from .forms import PostForm, CommentForm, SubscribeForm
 from flask_login import login_required, current_user
 import datetime
 from ..email import mail_message
-
+from ..request import get_quotes
 #Views
 
 
@@ -18,8 +18,8 @@ def index():
 
     title = 'Home - Welcome to my favorite Blog!!'
     posts = Post.query.order_by(Post.date_posted.desc()).all()
-
-    return render_template('index.html', title=title,  posts=posts)
+    quotes= get_quotes()
+    return render_template('index.html', title=title,  posts=posts, quotes=quotes)
 
 
 @main.route('/post/new', methods=['GET', 'POST'])
@@ -32,7 +32,7 @@ def new_post():
 
         users = User.query.all()
 
-        # Update pitch instance
+        # Update post instance
         new_post = Post(title=title, text=text, post=current_user)
 
         # Save post method
@@ -101,16 +101,25 @@ def delete_post(id):
     return redirect(url_for('main.all_posts'))
 
 
-@main.route('/subscribe/<id>')
-def subscribe(id):
-    user = User.query.filter_by(id=id).first()
+@main.route('/subscribe/')
+def subscribe():
+    form = SubscribeForm()
+    # user = User.query.filter_by(id=id).first()
 
-    user.subscription = True
+    # user.subscription = True
 
     db.session.commit()
+    if form.validate_on_submit():
+       
+        email = form.email.data
+        new_email = Comment(email=email)
 
-    return redirect(url_for('main.index'))
-    return render_template('subscribe.html', form=form)
+        new_email.save_email()
+
+    # comments = Comment.get_comments(post)
+
+    # return redirect(url_for('main.index'))
+    return render_template('auth/subscribe.html', form=form)
 
 
 @main.route('/post/update/<id>', methods=['GET', 'POST'])
@@ -135,3 +144,4 @@ def update_post(id):
         return redirect(url_for('main.post', id=post.id))
 
     return render_template('update.html', form=form)
+
