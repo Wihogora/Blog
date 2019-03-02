@@ -13,22 +13,32 @@
 
         <!-- Styles block -->
 
+        
+    </head>
+        
+    <body>
         {%block content%}
-            <div class="container" style="padding-bottom: 20px;">
-            <a href="{{url_for('main.new_post')}}" class="btn btn-success">Create post</a>
-            </div>
+        <div class="jumbotron text-center" style="background-color: rgb(158, 120, 130); color: #fff; padding: 55px 25px; font-family: Times New Roman, Times, serif;">
+                <h1> My Blog </h1>
 
-            </div>
-            <div class="container" style= "font-family: 'Cormorant Upright', serif;">
+                <img src="/home/ww/Blog/app/static/photos/wiwi.jpg" style="height:100px; width:100px;">
+        </div>
+        
+      
+        <!-- <div class="container" style="padding-bottom: 20px;"> -->
+        <!-- <a href="{{url_for('main.all_posts')}}" class="btn btn-success"> posts</a> -->
+        <!-- </div> -->
+        <!-- <div class="container" style="padding-bottom: 20px;">
+        <a href="{{url_for('main.new_post')}}" class="btn btn-success">Create post</a>
+        </div> -->
+
+        </div>
+        <div class="container" style= "font-family: 'Cormorant Upright', serif;">
                 <h1>Recent posts</h1>
-                <a href="/subscribe/{{current_user.id}}" class="btn btn-success">Subscribe</a>
                 <hr>
                 {{macro.displayPosts(posts)}}
-            </div>
+                <a href="{{url_for('auth.register')}}" class="btn btn-success", style="margin-top:110px;">Subscribe</a>
+        </div>
         {%endblock%}
-    </head>
-  
-    <body>
-       
     </body>
 </html>

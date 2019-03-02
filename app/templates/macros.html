@@ -1,20 +1,12 @@
 {% macro displayPosts(post_list)%}
     {%for post in post_list%}
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 review-card">
-            <div class="well well-lg">
-                <h4>{{post.post_title}}</h4>
-                <p>{{post.post_content| truncate(100)}}</p>
-                <p>Posted on: {{post.date_posted.strftime('%Y-%m-%d')}} <a href="/post/{{post.id}}" class="btn btn-primary pull-right">Read</a></p>
-            </div>
-        </div>
-    {%endfor%}
-{%endmacro%}
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+        <div class="well well-lg" style="background-color: white;">
+            <h4>{{post.title}}</h4>
+            <p>{{post.text| truncate(120)}}</p>
+            <p>Posted on: {{post.date_posted.strftime('%Y-%m-%d')}} <a href="/post/{{post.id}}" class="btn btn-primary pull-right">Read</a></p>
 
-{%macro displayComments(comments_list)%}
-{%for comment in comments_list%}
-    <div class="col-md-12">
-        <h5>{{comment.user.username}}</h5>
-        <p>{{comment.comment}}</p>
+        </div>
     </div>
-{%endfor%}
+    {%endfor%}
 {%endmacro%}

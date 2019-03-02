@@ -7,7 +7,7 @@
 {%endblock%}
 <!-- Content block -->
 {%block content%}
-<div class="container" style="font-family: Times New Roman, Times, serif;">
+<div class="container">
     <div class="row">
         <h3>{{post.title}}</h3>
         <hr>
@@ -18,24 +18,23 @@
             <a href="{{url_for('main.delete_post',id = post.id)}}" class="btn btn-danger btn-sm">Delete post</a>
             <a href="/post/update/{{post.id}}" class="btn btn-info btn-sm">Update post</a>
         {%endif%}
-
     </div>
     <div class="row">
         <h4>Comments</h4>
         <hr>
-        {% if current_user.is_authenticated %}
-            {{ wtf.quick_form(comment_form) }}
-        {%endif%}
+
+      
+        {{ wtf.quick_form(form) }}
         {%for comment in comments%}
             <div class="col-md-12">
-                <h5>{{comment.user.username}}</h5>
+                <h5>{{comment.username}}</h5>
                 <p>{{comment.comment}}</p>
-                {% if current_user.is_authenticated and current_user.role_id == 1%}
-                    <a href="{{url_for('main.delete_comment',id = comment.id,post_id = comment.post)}}" class="btn btn-danger btn-sm">Delete comment</a>
-                {%endif%}
+               
+                    <a href="{{url_for('main.delete_comment',comment_id=username,id = comment.id,post_id = comment.post)}}" class="btn btn-danger ">Delete comment</a>
+                    <a href="{{url_for('main.update_post',id = post.id)}}" class="btn btn-success">Update comment</a>
+              
             </div>
         {%endfor%}
     </div>
-
 </div>
 {%endblock%}
