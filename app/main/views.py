@@ -68,8 +68,8 @@ def post(id):
 
     if form.validate_on_submit():
         comment = form.text.data
-
-        new_comment = Comment(comment=comment, post=post.id)
+        username = form.names.data
+        new_comment = Comment(username=username,comment=comment, post=post.id)
 
         new_comment.save_comment()
 
@@ -80,6 +80,7 @@ def post(id):
 
 
 @main.route('/delete_comment/<id>/<post_id>', methods=['GET', 'POST'])
+@login_required
 def delete_comment(id, post_id):
     comment = Comment.query.filter_by(id=id).first()
 
@@ -109,10 +110,11 @@ def subscribe(id):
     db.session.commit()
 
     return redirect(url_for('main.index'))
-    # return render_template('register.html', form=form)
+    return render_template('subscribe.html', form=form)
 
 
 @main.route('/post/update/<id>', methods=['GET', 'POST'])
+@login_required
 def update_post(id):
     form = PostForm()
 

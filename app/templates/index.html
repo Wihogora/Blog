@@ -21,7 +21,7 @@
         <div class="jumbotron text-center" style="background-color: rgb(158, 120, 130); color: #fff; padding: 55px 25px; font-family: Times New Roman, Times, serif;">
                 <h1> My Blog </h1>
 
-                <img src="/home/ww/Blog/app/static/photos/wiwi.jpg" style="height:100px; width:100px;">
+                <img src="static/photos/wiwi.jpg" style="height:200px; width:200px;">
         </div>
         
       
@@ -37,7 +37,7 @@
                 <h1>Recent posts</h1>
                 <hr>
                 {{macro.displayPosts(posts)}}
-                <a href="{{url_for('auth.register')}}" class="btn btn-success", style="margin-top:110px;">Subscribe</a>
+                <a href="{{url_for('main.subscribe,id = user.id')}}" class="btn btn-success", style="margin-top:110px;">Subscribe</a>
         </div>
         {%endblock%}
     </body>

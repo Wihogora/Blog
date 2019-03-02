@@ -12,11 +12,10 @@ class PostForm(FlaskForm):
 #     submit = SubmitField('Submit')
 
 class CommentForm(FlaskForm):
-    Names = StringField('Username', validators=[Required()])
+    names = StringField('Username', validators=[Required()])
     text = TextAreaField('Leave a comment:', validators=[Required()])
     submit = SubmitField('Submit')
 
 class SubscribeForm(FlaskForm):
-    Email = StringField('Email', validators=[Required()])
-    password = TextAreaField('Your password:', validators=[Required()])
+    email = StringField('Email', validators=[Required()])
     submit = SubmitField('Submit')

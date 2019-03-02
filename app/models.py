@@ -94,15 +94,17 @@ class Comment(db.Model):
 
 
 
+class Subscribe(db.Model):
+    __tablename__ = 'subscribe'
 
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(255),unique = True,index = True)
 
-
-
-
-
-
-
-
+    def save_subscribe(self):
+        db.session.add(self)
+        db.session.commit()
+        return subscribe
+   
 
 
 
