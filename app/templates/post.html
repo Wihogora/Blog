@@ -31,7 +31,7 @@
                 <p>{{comment.comment}}</p>
                
                     <a href="{{url_for('main.delete_comment',comment_id=username,id = comment.id,post_id = comment.post)}}" class="btn btn-danger ">Delete comment</a>
-                    <a href="{{url_for('main.update_post',id = post.id)}}" class="btn btn-success">Update comment</a>
+                    <!-- <a href="{{url_for('main.update_post',id = post.id)}}" class="btn btn-success">Update comment</a> -->
               
             </div>
         {%endfor%}

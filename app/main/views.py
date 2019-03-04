@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for, abort
 from . import main
-from ..models import User, Post, Comment
+from ..models import User, Post, Comment, Subscribe
 from .. import db
 from .forms import PostForm, CommentForm, SubscribeForm
 from flask_login import login_required, current_user
@@ -101,25 +101,21 @@ def delete_post(id):
     return redirect(url_for('main.all_posts'))
 
 
-@main.route('/subscribe/')
+@main.route('/subscribe/', methods=['GET', 'POST'])
+
 def subscribe():
+    """
+    Function that enables one to subscribe to the post blog
+    """
     form = SubscribeForm()
-    # user = User.query.filter_by(id=id).first()
-
-    # user.subscription = True
-
-    db.session.commit()
     if form.validate_on_submit():
-       
-        email = form.email.data
-        new_email = Comment(email=email)
+        subscribe = Subscribe(email=form.email.data)
+        db.session.add(subscribe)
+        db.session.commit()
+        return redirect(url_for('main.index'))
 
-        new_email.save_email()
-
-    # comments = Comment.get_comments(post)
-
-    # return redirect(url_for('main.index'))
     return render_template('auth/subscribe.html', form=form)
+
 
 
 @main.route('/post/update/<id>', methods=['GET', 'POST'])
